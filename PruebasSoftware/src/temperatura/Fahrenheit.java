@@ -4,37 +4,38 @@ package temperatura;
  *
  * @author Puerta Jullian
  */
-public class Celsius {
+public class Fahrenheit {
 
     //Atributos de clase
     private double valor;
 
     /**
-     * Constructor de Celsius
+     * Constructor de Fahrenheit
      *
      * @param valor con el cual se inicilizara
      */
-    public Celsius(double valor) {
+    public Fahrenheit(double valor) {
         this.valor = valor;
     }
 
     /**
-     * Convierte valor inicial de Celisus a su equivalente en
-     * Fahrenheit
+     * Convierte valor inicial de Fahrenheit  a su equivalente en
+     * Celsius
      *
-     * @return equivalencia en Fahrenheit
+     * @return equivalencia en Celsius
      */
-    public double toFahrenheit() {
-        return (valor * 9 / 5) + 32;
+    public double toCelsius() {
+        return (valor - 32) * 5 / 9;
     }
 
     /**
-     * Convierte valor inicial de Celisus a su equivalente en Kelvin
+     * Convierte valor inicial de Fahrenheit a su equivalente en
+     * Kelvin
      *
      * @return equivalencia en Kelvin
      */
     public double toKelvin() {
-        return valor + 273.15;
+        return (valor - 32) * 5 / 9 + 273.15;
     }
 
     /**

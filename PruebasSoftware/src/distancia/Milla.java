@@ -12,16 +12,31 @@ public class Milla {
         this.valor = valor;
     }
 
-    // Convertir millas a metros
+    /**
+     * Convierte valor inicial de Milla(s) convertido(s) a su equivalente en
+     * Metro(s)
+     *
+     * @return quivalencia en Metro(s)
+     */
     public double toMetro() {
         return valor * 1609.34;
     }
 
-    // Convertir millas a kilómetros
+    /**
+     * Convierte valor inicial de Milla(s) convertido(s) a su equivalente en
+     * Kilometro(s)
+     *
+     * @return quivalencia en Kilometro(s)
+     */
     public double toKilometro() {
         return valor * 1.60934;
     }
 
+    /**
+     * Obtiene el valor en la instancia de Milla
+     *
+     * @return valor contenido en la instancia
+     */
     public double getValor() {
         return valor;
     }
