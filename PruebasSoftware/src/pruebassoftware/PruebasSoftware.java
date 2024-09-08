@@ -293,8 +293,46 @@ public class PruebasSoftware {
         } while ((unidadInicial < 1 || unidadInicial > 3) || (unidadConvertida < 1 || unidadConvertida > 3));
     }
 
-    public static void conversionForTemperatura(Scanner input) {
-        //PA Q LO HAGA EL AMOS
+    public static void conversionForTemperatura(Scanner input){
+
         System.out.println("AQUI SE MANEJA LA CONVERSION POR TEMPERATURA");
+
+        int unidadInicial = 0;
+        int unidadFinal = 0;
+
+        do{
+
+            try{
+
+                System.out.println("AQUI SE MANEJA LA CONVERSION POR TEMPERATURA");
+                System.out.println("");
+                System.out.println("Seleccione la unidad incial: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
+                unidadInicial = input.nextInt();
+                System.out.println("Ingrese el valor a convertir: ");
+                double valor = input.nextDouble();
+                System.out.println("Seleccione la unidad a convertir: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
+                unidadFinal = input.nextInt();
+
+                switch ( valor){
+
+
+
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Ingresa un valor valido");
+                input.nextLine();
+                unidadInicial = 0;
+                unidadFinal = 0;
+            } catch (Exception e) {
+                System.out.println("Ingresa una opcion valida");
+                input.nextLine();
+                unidadInicial = 0;
+                unidadFinal = 0;
+            }
+
+        } while ((unidadInicial < 1 || unidadInicial > 3) || (unidadFinal < 1 || unidadFinal > 3));
+
     }
+
 }
