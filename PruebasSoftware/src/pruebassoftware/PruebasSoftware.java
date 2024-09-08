@@ -97,84 +97,102 @@ public class PruebasSoftware {
     Metodo de conversor de unidades de distancia.
      */
     public static void conversionForDistancia(Scanner input) {
-        System.out.println("AQUI SE MANEJA LA CONVERSION POR DISTANCIA");
-        System.out.println("");
-        System.out.println("Seleccione la unidad incial: (1 KILOMETRO | 2 METRO | 3 MILLA) ");
-        int unidadInicial = input.nextInt();
-        System.out.println("Ingrese el valor a convertir: ");
-        double valor = input.nextDouble();
-        System.out.println("Seleccione la unidad a convertir: (1 KILOMETRO | 2 METRO | 3 MILLA) ");
-        int unidadConvertida = input.nextInt();
+        int unidadInicial = 0 ;
+        int unidadConvertida = 0 ;
 
-        double resultado = 0;
+        do{
+            try{
+                System.out.println("AQUI SE MANEJA LA CONVERSION POR DISTANCIA");
+                System.out.println("");
+                System.out.println("Seleccione la unidad incial: (1 KILOMETRO | 2 METRO | 3 MILLA) ");
+                unidadInicial = input.nextInt();
+                System.out.println("Ingrese el valor a convertir: ");
+                double valor = input.nextDouble();
+                System.out.println("Seleccione la unidad a convertir: (1 KILOMETRO | 2 METRO | 3 MILLA) ");
+                unidadConvertida = input.nextInt();
 
-        switch (unidadInicial) {
-            // En caso de seleccionar Kilometro como la unidad incial.
-            case 1:
-                Kilometro kilometro = new Kilometro(valor);
-                switch (unidadConvertida) {
+                double resultado = 0;
+
+                switch (unidadInicial) {
+                    // En caso de seleccionar Kilometro como la unidad incial.
                     case 1:
-                        System.out.println("Se esta realizando una conversion de la misma unidad");
+                        Kilometro kilometro = new Kilometro(valor);
+                        switch (unidadConvertida) {
+                            case 1:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception() ;
+                            case 2:
+                                resultado = kilometro.toMetro();
+                                System.out.println(valor + " kilometros = " + resultado + " metros");
+                                break;
+                            case 3:
+                                resultado = kilometro.toMilla();
+                                System.out.println(valor + " kilometros = " + resultado + " millas");
+                                break;
+                            default:
+                                System.out.println("Ingresa una opcion valida");
+                                break;
+                        }
                         break;
+                    // En caso de seleccionar Metro como la unidad incial.
                     case 2:
-                        resultado = kilometro.toMetro();
-                        System.out.println(valor + " kilometros = " + resultado + " metros");
+                        Metro metro = new Metro(valor);
+                        switch (unidadConvertida) {
+                            case 1:
+                                resultado = metro.toKilometro();
+                                System.out.println(valor + " metros = " + resultado + " kilometros");
+                                break;
+                            case 2:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception() ;
+                            case 3:
+                                resultado = metro.toMilla();
+                                System.out.println(valor + " metros = " + resultado + " millas");
+                                break;
+                            default:
+                                System.out.println("Ingresa una opcion valida");
+                                break;
+                        }
                         break;
+                    // En caso de seleccionar Milla como la unidad incial.
                     case 3:
-                        resultado = kilometro.toMilla();
-                        System.out.println(valor + " kilometros = " + resultado + " millas");
+                        Milla milla = new Milla(valor);
+                        switch (unidadConvertida) {
+                            case 1:
+                                resultado = milla.toKilometro();
+                                System.out.println(valor + " millas = " + resultado + " kilometros");
+                                break;
+                            case 2:
+                                resultado = milla.toMetro();
+                                System.out.println(valor + " millas = " + resultado + " metros");
+                                break;
+                            case 3:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception() ;
+                            default:
+                                System.out.println("Ingresa una opcion valida");
+                                break;
+                        }
                         break;
+
+                    // Caso de error.
                     default:
                         System.out.println("Ingresa una opcion valida");
                         break;
                 }
-                break;
-            // En caso de seleccionar Metro como la unidad incial.
-            case 2:
-                Metro metro = new Metro(valor);
-                switch (unidadConvertida) {
-                    case 1:
-                        resultado = metro.toKilometro();
-                        System.out.println(valor + " metros = " + resultado + " kilometros");
-                        break;
-                    case 2:
-                        System.out.println("Se esta realizando una conversion de la misma unidad");
-                        break;
-                    case 3:
-                        resultado = metro.toMilla();
-                        System.out.println(valor + " metros = " + resultado + " millas");
-                        break;
-                    default:
-                        System.out.println("Ingresa una opcion valida");
-                        break;
-                }
-                break;
-            // En caso de seleccionar Milla como la unidad incial.
-            case 3:
-                Milla milla = new Milla(valor);
-                switch (unidadConvertida) {
-                    case 1:
-                        resultado = milla.toKilometro();
-                        System.out.println(valor + " millas = " + resultado + " kilometros");
-                        break;
-                    case 2:
-                        resultado = milla.toMetro();
-                        System.out.println(valor + " millas = " + resultado + " metros");
-                        break;
-                    case 3:
-                        System.out.println("Se esta realizando una conversion de la misma unidad");
-                        break;
-                    default:
-                        System.out.println("Ingresa una opcion valida");
-                        break;
-                }
-                break;
-
-            // Caso de error.    
-            default:
+            } catch (InputMismatchException e) {
+                System.out.println("Ingresa un valor valido");
+                input.nextLine();
+                unidadInicial = 0;
+                unidadConvertida = 0 ;
+            } catch (Exception e) {
                 System.out.println("Ingresa una opcion valida");
-                break;
-        }
+                input.nextLine();
+                unidadInicial = 0;
+                unidadConvertida = 0 ;
+            }
+        } while((unidadInicial < 1 || unidadInicial > 3) || (unidadConvertida < 1 || unidadConvertida > 3)) ;
+
     }
 
     public static void conversionForPeso() {
