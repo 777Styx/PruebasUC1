@@ -34,9 +34,9 @@ public class PruebasSoftware {
                 if (tipoConversion == 1) {
                     conversionForDistancia(input);
                 } else if (tipoConversion == 2) {
-                    conversionForPeso();
+                    conversionForPeso(input);
                 } else if (tipoConversion == 3) {
-                    conversionForTemperatura();
+                    conversionForTemperatura(input);
                 } else {
                     System.out.println("Ingresa un valor valido");
                 }
@@ -97,11 +97,11 @@ public class PruebasSoftware {
     Metodo de conversor de unidades de distancia.
      */
     public static void conversionForDistancia(Scanner input) {
-        int unidadInicial = 0 ;
-        int unidadConvertida = 0 ;
+        int unidadInicial = 0;
+        int unidadConvertida = 0;
 
-        do{
-            try{
+        do {
+            try {
                 System.out.println("AQUI SE MANEJA LA CONVERSION POR DISTANCIA");
                 System.out.println("");
                 System.out.println("Seleccione la unidad incial: (1 KILOMETRO | 2 METRO | 3 MILLA) ");
@@ -120,7 +120,7 @@ public class PruebasSoftware {
                         switch (unidadConvertida) {
                             case 1:
                                 System.out.println("Se esta realizando una conversion de la misma unidad");
-                                throw new Exception() ;
+                                throw new Exception();
                             case 2:
                                 resultado = kilometro.toMetro();
                                 System.out.println(valor + " kilometros = " + resultado + " metros");
@@ -144,7 +144,7 @@ public class PruebasSoftware {
                                 break;
                             case 2:
                                 System.out.println("Se esta realizando una conversion de la misma unidad");
-                                throw new Exception() ;
+                                throw new Exception();
                             case 3:
                                 resultado = metro.toMilla();
                                 System.out.println(valor + " metros = " + resultado + " millas");
@@ -168,7 +168,7 @@ public class PruebasSoftware {
                                 break;
                             case 3:
                                 System.out.println("Se esta realizando una conversion de la misma unidad");
-                                throw new Exception() ;
+                                throw new Exception();
                             default:
                                 System.out.println("Ingresa una opcion valida");
                                 break;
@@ -184,23 +184,117 @@ public class PruebasSoftware {
                 System.out.println("Ingresa un valor valido");
                 input.nextLine();
                 unidadInicial = 0;
-                unidadConvertida = 0 ;
+                unidadConvertida = 0;
             } catch (Exception e) {
                 System.out.println("Ingresa una opcion valida");
                 input.nextLine();
                 unidadInicial = 0;
-                unidadConvertida = 0 ;
+                unidadConvertida = 0;
             }
-        } while((unidadInicial < 1 || unidadInicial > 3) || (unidadConvertida < 1 || unidadConvertida > 3)) ;
+        } while ((unidadInicial < 1 || unidadInicial > 3) || (unidadConvertida < 1 || unidadConvertida > 3));
 
     }
 
-    public static void conversionForPeso() {
-        System.out.println("AQUI SE MANEJA LA CONVERSION POR PESO");
+    public static void conversionForPeso(Scanner input) {
+        int unidadInicial = 0;
+        int unidadConvertida = 0;
+
+        do {
+            try {
+                System.out.println("AQUI SE MANEJA LA CONVERSION POR PESO");
+                System.out.println("");
+                System.out.println("Seleccione la unidad incial: (1 GRAMO | 2 KILOGRAMO | 3 LIBRA) ");
+                unidadInicial = input.nextInt();
+                System.out.println("Ingrese el valor a convertir: ");
+                double valor = input.nextDouble();
+                System.out.println("Seleccione la unidad a convertir: (1 GRAMO | 2 KILOGRAMO | 3 LIBRA) ");
+                unidadConvertida = input.nextInt();
+
+                double resultado = 0;
+
+                switch (unidadInicial) {
+                    // En caso de seleccionar Gramo como la unidad incial.
+                    case 1:
+                        Gramo gramo = new Gramo(valor);
+                        switch (unidadConvertida) {
+                            case 1:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception();
+                            case 2:
+                                resultado = gramo.toKilogramo();
+                                System.out.println(valor + " gramos = " + resultado + " kilogramos");
+                                break;
+                            case 3:
+                                resultado = gramo.toLibra();
+                                System.out.println(valor + " gramos = " + resultado + " libras");
+                                break;
+                            default:
+                                System.out.println("Ingresa una opcion valida");
+                                break;
+                        }
+                        break;
+                    // En caso de seleccionar Kilogramo como la unidad incial.
+                    case 2:
+                        Kilogramo kilogramo = new Kilogramo(valor);
+                        switch (unidadConvertida) {
+                            case 1:
+                                resultado = kilogramo.toGramo();
+                                System.out.println(valor + " kilogramos = " + resultado + " gramos");
+                                break;
+                            case 2:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception();
+                            case 3:
+                                resultado = kilogramo.toLibra();
+                                System.out.println(valor + " kilogramos = " + resultado + " libras");
+                                break;
+                            default:
+                                System.out.println("Ingresa una opcion valida");
+                                break;
+                        }
+                        break;
+                    // En caso de seleccionar Libra como la unidad incial.
+                    case 3:
+                        Libra libra = new Libra(valor);
+                        switch (unidadConvertida) {
+                            case 1:
+                                resultado = libra.toGramo();
+                                System.out.println(valor + " libras = " + resultado + " gramos");
+                                break;
+                            case 2:
+                                resultado = libra.toKilogramo();
+                                System.out.println(valor + " libras = " + resultado + " kilogramos");
+                                break;
+                            case 3:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception();
+                            default:
+                                System.out.println("Ingresa una opcion valida");
+                                break;
+                        }
+                        break;
+
+                    // Caso de error.
+                    default:
+                        System.out.println("Ingresa una opcion valida");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Ingresa un valor valido");
+                input.nextLine();
+                unidadInicial = 0;
+                unidadConvertida = 0;
+            } catch (Exception e) {
+                System.out.println("Ingresa una opcion valida");
+                input.nextLine();
+                unidadInicial = 0;
+                unidadConvertida = 0;
+            }
+        } while ((unidadInicial < 1 || unidadInicial > 3) || (unidadConvertida < 1 || unidadConvertida > 3));
     }
 
-    public static void conversionForTemperatura() {
+    public static void conversionForTemperatura(Scanner input) {
+        //PA Q LO HAGA EL AMOS
         System.out.println("AQUI SE MANEJA LA CONVERSION POR TEMPERATURA");
     }
-
 }
