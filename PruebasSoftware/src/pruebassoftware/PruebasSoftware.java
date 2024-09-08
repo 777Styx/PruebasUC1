@@ -313,9 +313,91 @@ public class PruebasSoftware {
                 System.out.println("Seleccione la unidad a convertir: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
                 unidadFinal = input.nextInt();
 
-                switch ( valor){
+                double resultado = 0;
 
+                switch ( unidadInicial ){
 
+                    case 1:
+                        Celsius celsisu = new Celsius(valor);
+                        switch (unidadFinal){
+
+                            case 1:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception();
+
+                            case 2:
+                                resultado = celsisu.toFahrenheit();
+                                System.out.println(valor + " Celsius = " + resultado + " Fahrenheit");
+                                break;
+
+                            case 3:
+                                resultado = celsisu.toKelvin();
+                                System.out.println(valor + " Celsius = " + resultado + " Kelvin");
+                                break;
+
+                            default:
+                                System.out.println("Ingrese una opcion valida");
+                                break;
+
+                        }
+
+                        break;
+
+                    case 2:
+                        Fahrenheit fahrenheit = new Fahrenheit(valor);
+                        switch (unidadFinal){
+
+                            case 1:
+                                resultado = fahrenheit.toCelsius();
+                                System.out.println(valor + " Fahrenheit = " + resultado + " Celsius");
+                                break;
+
+                            case 2:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception();
+
+                            case 3:
+                                resultado = fahrenheit.toKelvin();
+                                System.out.println(valor + " Fahrenheit = " + resultado + " Kelvin");
+                                break;
+
+                            default:
+                                System.out.println("Ingrese una opcion valida");
+                                break;
+
+                        }
+
+                        break;
+
+                    case 3:
+                        Kelvin kelvin = new Kelvin(valor);
+                        switch (unidadFinal){
+
+                            case 1:
+                                resultado = kelvin.toCelsius();
+                                System.out.println(valor + " Fahrenheit = " + resultado + " Celsius");
+                                break;
+
+                            case 2:
+                                resultado = kelvin.toFahrenheit();
+                                System.out.println(valor + " Kelvin = " + resultado + " Fahrenheit");
+                                break;
+
+                            case 3:
+                                System.out.println("Se esta realizando una conversion de la misma unidad");
+                                throw new Exception();
+
+                            default:
+                                System.out.println("Ingrese una opcion valida");
+                                break;
+
+                        }
+
+                        break;
+
+                    default:
+                        System.out.println("Ingresa una opcion valida");
+                        break;
 
                 }
 
