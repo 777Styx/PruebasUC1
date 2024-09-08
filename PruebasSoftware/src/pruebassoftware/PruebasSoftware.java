@@ -25,6 +25,7 @@ public class PruebasSoftware {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int tipoConversion = 0;
+        int continuar = 0;
 
         do {
             try {
@@ -45,7 +46,37 @@ public class PruebasSoftware {
                 input.nextLine();
                 tipoConversion = 0;
             }
-        } while (tipoConversion < 1 || tipoConversion > 3);
+
+            int validador = 0;
+            do{
+
+                try{
+
+                    System.out.println("¿Le gustaria hacer otra conversion? (1: Si | 2: No)");
+                    continuar = input.nextInt();
+                    validador = 1;
+                    if(continuar < 1 || continuar > 2){
+
+                        System.out.println("Ingresa un valor valido");
+                        validador = 0;
+
+                    }
+
+                }catch (InputMismatchException e) {
+                    System.out.println("Ingresa un valor valido");
+                    validador = 0;
+                    input.nextLine();
+                } catch (Exception e) {
+                    System.out.println("Ingresa una opcion valida");
+                    validador = 0;
+                    input.nextLine();
+                }
+
+            }while (validador == 0);
+
+
+
+        } while ((tipoConversion < 1 || tipoConversion > 3) || (continuar == 1));
 
 //        // Conversión de 5000 metros
 //        Metro metro = new Metro(5000);
