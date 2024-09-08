@@ -254,7 +254,7 @@ public class PruebasSoftware {
                         }
                         break;
                     // En caso de seleccionar Libra como la unidad incial.
-                    case 3:
+                    case +3:
                         Libra libra = new Libra(valor);
                         switch (unidadConvertida) {
                             case 1:
@@ -295,8 +295,6 @@ public class PruebasSoftware {
 
     public static void conversionForTemperatura(Scanner input){
 
-        System.out.println("AQUI SE MANEJA LA CONVERSION POR TEMPERATURA");
-
         int unidadInicial = 0;
         int unidadFinal = 0;
 
@@ -306,12 +304,86 @@ public class PruebasSoftware {
 
                 System.out.println("AQUI SE MANEJA LA CONVERSION POR TEMPERATURA");
                 System.out.println("");
-                System.out.println("Seleccione la unidad incial: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
-                unidadInicial = input.nextInt();
-                System.out.println("Ingrese el valor a convertir: ");
-                double valor = input.nextDouble();
-                System.out.println("Seleccione la unidad a convertir: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
-                unidadFinal = input.nextInt();
+                int validador = 0;
+                do{
+
+                    try{
+
+                        System.out.println("Seleccione la unidad incial: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
+                        unidadInicial = input.nextInt();
+                        validador = 1;
+                        if(unidadInicial < 1 || unidadInicial > 3){
+
+                            System.out.println("Ingrese una opcion valida");
+                            validador = 0;
+
+                        }
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Ingresa un valor valido");
+                        validador = 0;
+                        input.next();
+
+                    } catch (Exception e) {
+                        System.out.println("Ingresa una opcion valida");
+                        validador = 0;
+                        input.next();
+                    }
+
+                }while (validador == 0);
+
+                validador = 0;
+                double valor = 0;
+                do{
+
+                    try{
+
+                        System.out.println("Ingrese el valor a convertir: ");
+                        valor = input.nextDouble();
+                        validador = 1;
+
+                    }catch (InputMismatchException e) {
+                        System.out.println("Ingresa un valor valido");
+                        validador = 0;
+                        input.next();
+
+                    } catch (Exception e) {
+                        System.out.println("Ingresa una opcion valida");
+                        validador = 0;
+                        input.next();
+                    }
+
+                }while (validador == 0);
+
+
+                validador = 0;
+                do{
+                    try{
+
+                        System.out.println("Seleccione la unidad a convertir: (1 CELSIUS | 2 FAHRENHEIT | 3 KELVIN) ");
+                        unidadFinal = input.nextInt();
+                        validador = 1;
+                        if(unidadFinal < 1 || unidadFinal > 3){
+
+                            System.out.println("Ingrese una opcion valida");
+                            validador = 0;
+
+                        }
+
+                    }catch (InputMismatchException e) {
+                        System.out.println("Ingresa un valor valido");
+                        validador = 0;
+                        input.next();
+
+                    } catch (Exception e) {
+                        System.out.println("Ingresa una opcion valida");
+                        validador = 0;
+                        input.next();
+                    }
+
+                } while (validador == 0);
+
+
 
                 double resultado = 0;
 
